@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A beautiful countdown clock with analog and digital display">
+    <title>Countdown Clock</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="clock-container">
+            <h1>Countdown Clock</h1>
+            
+            <!-- Time Input Section -->
+            <div class="time-inputs">    
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="number" id="hours" min="0" max="23" value="00" aria-label="Hours">
+                        <div class="spinner-buttons">
+                            <button class="spinner-button" onclick="incrementValue('hours', 23)">▲</button>
+                            <button class="spinner-button" onclick="decrementValue('hours', 23)">▼</button>
+                        </div>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="input-wrapper">
+                        <input type="number" id="minutes" min="0" max="59" value="00" aria-label="Minutes">
+                        <div class="spinner-buttons">
+                            <button class="spinner-button" onclick="incrementValue('minutes', 59)">▲</button>
+                            <button class="spinner-button" onclick="decrementValue('minutes', 59)">▼</button>
+                        </div>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="input-wrapper">
+                        <input type="number" id="seconds" min="0" max="59" value="00" aria-label="Seconds">
+                        <div class="spinner-buttons">
+                            <button class="spinner-button" onclick="incrementValue('seconds', 59)">▲</button>
+                            <button class="spinner-button" onclick="decrementValue('seconds', 59)">▼</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clock Display Section -->
+            <div class="clock-display">
+                <div class="digital-clock" id="digital">00:00:00</div>
+                
+                <div class="analog-clock" role="presentation">
+                    <div class="hand hours" id="handhours"></div>
+                    <div class="hand minutes" id="handminutes"></div>
+                    <div class="hand seconds" id="handseconds"></div>
+                    <div class="center-dot"></div>
+                    <div class="markers">
+                        <div class="marker marker-3"></div>
+                        <div class="marker marker-6"></div>
+                        <div class="marker marker-9"></div>
+                        <div class="marker marker-12"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="controls">
+                <button id="startBtn" class="btn">Start</button>
+                <button id="stopBtn" class="btn" disabled>Stop</button>
+                <button id="resetBtn" class="btn">Reset</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Audio Elements -->
+    <audio id="alarmSound" src="./alarm.mp3" preload="auto"></audio>
+    <audio id="tickSound" src="./alert.wav" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html> 

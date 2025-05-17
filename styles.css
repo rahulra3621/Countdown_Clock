@@ -1,0 +1,383 @@
+/* Base Styles */
+:root {
+    --primary-color: #4CAF50;
+    --primary-dark: #45a049;
+    --warning-color: #ff3333;
+    --text-color: #ffffff;
+    --bg-dark: rgba(42, 42, 42, 0.8);
+    --bg-darker: rgba(0, 0, 0, 0.4);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    color: var(--text-color);
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* Video Background */
+.video-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #000;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Main Content Layout */
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.clock-container {
+    background: rgba(63, 63, 63, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(95, 211, 224, 0.1);
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.clock-container:hover {
+    box-shadow: 0 0 30px var(--primary-color);
+    transform: translateY(-5px);
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Time Input Styles */
+.time-inputs {
+    margin: 30px 0;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group input {
+    width: 100px;
+    padding: 15px 20px;
+    background: var(--bg-dark);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 18px;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+    background: var(--bg-darker);
+}
+
+.spinner-buttons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: calc(100% - 4px);
+}
+
+.spinner-button {
+    background: var(--primary-color);
+    border: none;
+    color: var(--text-color);
+    width: 24px;
+    height: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    padding: 0;
+    font-size: 14px;
+}
+
+.spinner-button:first-child {
+    border-radius: 0 8px 0 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spinner-button:last-child {
+    border-radius: 0 0 8px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.spinner-button:hover {
+    background: var(--primary-dark);
+}
+
+.spinner-button:active {
+    transform: scale(0.95);
+}
+
+.separator {
+    color: var(--text-color);
+    font-size: 24px;
+    text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    margin: 0 5px;
+}
+
+/* Hide default spinners */
+.input-group input::-webkit-inner-spin-button,
+.input-group input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Clock Display Styles */
+.clock-display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 30px 0;
+}
+
+.digital-clock {
+    font-size: 54px;
+    font-weight: bold;
+    text-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    background: transparent;
+}
+
+/* Analog Clock Styles */
+.analog-clock {
+    width: 300px;
+    height: 300px;
+    border: 5px solid var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.analog-clock:hover {
+    transform: scale(1.05);
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    border-radius: 5px;
+    transition: transform 0.05s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hand.hours {
+    width: 4px;
+    height: 25%;
+    background: var(--primary-color);
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hand.minutes {
+    width: 3px;
+    height: 35%;
+    background: var(--primary-color);
+    opacity: 0.8;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hand.seconds {
+    width: 2px;
+    height: 40%;
+    background: var(--warning-color);
+    transition: transform 0.05s linear;
+}
+
+.center-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.markers {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.marker {
+    position: absolute;
+    width: 3px;
+    height: 15px;
+    background: var(--primary-color);
+    opacity: 0.7;
+}
+
+.marker-3 { right: 15px; top: 50%; transform: translateY(-50%); }
+.marker-6 { bottom: 15px; left: 50%; transform: translateX(-50%); }
+.marker-9 { left: 15px; top: 50%; transform: translateY(-50%); }
+.marker-12 { top: 15px; left: 50%; transform: translateX(-50%); }
+
+/* Button Styles */
+.controls {
+    margin: 30px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+}
+
+.btn:hover::after {
+    animation: buttonShine 0.8s;
+}
+
+.btn:disabled {
+    background: linear-gradient(45deg, #cccccc, #999999);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Warning State */
+.warning {
+    color: var(--warning-color) !important;
+    text-shadow: 0 0 20px rgba(255, 51, 51, 0.7);
+    animation: pulse 0.8s infinite;
+}
+
+/* Animations */
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes buttonShine {
+    100% { transform: translateX(100%); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .clock-container {
+        padding: 20px;
+    }
+    
+    .clock-display {
+        flex-direction: column;
+    }
+
+    .digital-clock {
+        font-size: 40px;
+    }
+
+    .analog-clock {
+        width: 250px;
+        height: 250px;
+    }
+
+    .input-group input {
+        width: 80px;
+        padding: 12px 15px;
+    }
+} 
